@@ -25,6 +25,9 @@
 //   return inches * 2.54;
 // };
 
-const inchToCM = (inches) =>  inches * 2.54;
+const inchToCM = (inches) => inches * 2.54;
 
-console.log(inchToCM(3));
+// console.log(inchToCM(3));
+
+const add2 = (a, b = 3) => a + b;
+console.log(add2(2, 4));
