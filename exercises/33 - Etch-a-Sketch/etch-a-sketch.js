@@ -63,4 +63,16 @@ function handleKey(e) {
   }
 }
 
+function clearCanvas() {
+  canvas.classList.add("shake");
+  canvas.addEventListener(
+    "animationend",
+    function() {
+      canvas.classList.remove("shake");
+    },
+    { once: true }
+  );
+}
+
 window.addEventListener("keydown", handleKey);
+shakeButton.addEventListener("click", clearCanvas);
