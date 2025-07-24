@@ -31,5 +31,4 @@ modalOuter.addEventListener("click", function(e) {
   if (isOutside) {
     modalOuter.classList.remove("open");
   }
-  console.log(isOutside);
 });
