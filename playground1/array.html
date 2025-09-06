@@ -18,6 +18,34 @@
       //   const name3 = ["Bassey", ...names];
       //   console.log(name3);
 
+      //   Put item in the middle of an array
+      const bikes = ["Miele", "Panasonic", "Bianchi", "Miyata"];
+      const newBikes = [...bikes.slice(0, 2), "Papa", ...bikes.slice(2)];
+      //   console.log(newBikes);
+
+      //   Remove Bianchi from the array
+      const newBike2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
+      //   console.log(newBike2);
+
+      const comments = [
+        { id: 123, text: "Love this" },
+        { id: 456, text: "Super good" },
+        { id: 789, text: "You are the best" },
+        { id: 101, text: "Ramen is my fav food ever" },
+      ];
+
+      function deleteComment(id, comments) {
+        const commentIdx = comments.findIndex((comment) => comment.id === id);
+        const newArray = [
+          ...comments.slice(0, commentIdx),
+          ...comments.slice(commentIdx + 1),
+        ];
+
+        return newArray;
+      }
+
+      console.log(deleteComment(123, comments));
+
       //   Mutation Methods - They change the original array
       const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       //   console.log(numbers);
