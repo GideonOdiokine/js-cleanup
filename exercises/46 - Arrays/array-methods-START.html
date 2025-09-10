@@ -49,8 +49,8 @@
       ];
 
       /*
-        Static Methods
-      */
+           Static Methods
+         */
 
       // Array.of();
 
@@ -86,17 +86,17 @@
       //   });
 
       /*
-        Instance Methods
-      */
+           Instance Methods
+         */
 
       // Display all bun types with " or " - use join()
       const bunString = buns.join(" or ");
-      console.log(bunString);
+      //   console.log(bunString);
 
       // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into a string
       const foodString = "hot dogs,hamburgers,sausages,corn";
       const foodArray = foodString.split(",");
-      console.log(foodArray);
+      //   console.log(foodArray);
 
       // take the last item off toppings with pop()
       //   const lastTopping = toppings.pop();
@@ -112,10 +112,10 @@
       //   console.log(toppings);
       // Do the last four,but immutable (with spreads and new variables)
       const lastTopping = toppings.slice(0, toppings.length - 1);
-      console.log(lastTopping);
+      //   console.log(lastTopping);
 
       const addLastTopping = [...lastTopping, toppings[toppings.length - 1]];
-      console.log(addLastTopping);
+      //   console.log(addLastTopping);
 
       // Make a copy of the toppings array with slice()
       //   const copyToppings = toppings.slice();
@@ -128,31 +128,93 @@
       //   console.log(newToppings);
       // find the index of Avocado with indexOf() / lastIndexOf()
       const avocadoIndex = toppings.indexOf("Avocado");
-      console.log(avocadoIndex);
+      //   console.log(avocadoIndex);
       // Check if hot sauce is in the toppings with includes()
-      const isHotSauce = toppings.includes("hot sauce");
-      console.log(isHotSauce);
+      const isHotSauce = toppings.includes("Hot sauce");
+      //   console.log(isHotSauce);
       // add it if it's not
+      if (!isHotSauce) {
+        toppings.push("Hot sauce");
+      }
       // flip those toppings around with reverse()
+      toppings.reverse();
 
       /*
-        Callback Methods
-      */
+           Callback Methods
+         */
 
       // find the first rating that talks about a burger with find()
+      //   function findBurgRating(singleFeedback) {
+      //     return singleFeedback.comment.includes("burg");
+      //   }
+      //   const burgRating = feedback.find((item) => item.comment.includes("bur"));
+
+      // Instead of the above(avoiding rewriting the above function for every word)
+      function findByWord(word) {
+        return function(singleFeedback) {
+          return singleFeedback.comment.includes(word);
+        };
+      }
+
+      //   const burgRating = feedback.find(findByWord("burg"));
+      //   const smoothiesRating = feedback.find(findByWord("Smoothies"));
+      //   console.log(burgRating);
+      //   console.log(smoothiesRating);
       // find all ratings that are above 2 with filter()
+
+      function filterByRating(number) {
+        return function(item) {
+          return item.rating > number ? true : false;
+        };
+      }
+
+      const goodReviews = feedback.filter(filterByRating(3));
+      //   console.table(goodReviews);
       // find all ratings that talk about a burger with filter()
+      //   const burgRating = feedback.filter((item) => {
+      //     if (item.comment.includes("burg")) {
+      //       return true;
+      //     } else {
+      //       return false;
+      //     }
+      //   });
+      //   console.log(burgRating);
+
+      const burgRating = feedback.filter(findByWord("burg"));
+      console.log(burgRating);
       // Remove the one star rating however you like!
+      //   const legitRatings = feedback.filter((item) => item.rating !== 1);
+      //   console.log(legitRatings);
+      //   const legitRatings = [...feedback];
+      //   const itemToRemove = feedback.splice(4, 1);
+      //   console.log(itemToRemove);
+      //   console.log(feedback);
 
       // check if there is at least 5 of one type of meat with some()
+      const isThereEnoughOfAlLeastOneMeat = Object.values(meats).some(
+        (item) => item >= 5
+      );
+      console.log(isThereEnoughOfAlLeastOneMeat);
       // make sure we have at least 3 of every meat with every()
+      const isThereEnoughOfEveryMeat = Object.values(meats).every(
+        (item) => item >= 5
+      );
+      console.log(isThereEnoughOfEveryMeat);
       // sort the toppings alphabetically with sort()
+      const sortedToppings = toppings.sort();
+      console.log(sortedToppings);
       // sort the order totals from most expensive to least with .sort()
+      const sortedOrder = [...orderTotals].sort((a, b) => b - a);
+      console.log(sortedOrder);
+      console.log(orderTotals);
       // Sort the prices with sort()
+      const sortedPrices = Object.entries(prices).sort((a, b) => a[1] - b[1]);
+      console.log(sortedPrices);
+      console.log(Object.fromEntries(sortedPrices));
 
       /*
-        Looping Methods (next)
-      */
+           Looping Methods (next)
+         */
     </script>
   </body>
 </html>
