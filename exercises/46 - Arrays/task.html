@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order</title>
+  </head>
+  <body>
+    <script>
+      const orders = [
+        {
+          name: "Kait",
+          total: 200,
+          delivered: true,
+          items: [
+            { name: "JavaScript for Beginners", price: 50 },
+            { name: "JavaScript for Intermediate", price: 50 },
+            { name: "JavaScript for Experts", price: 100 },
+          ],
+          createdAt: new Date("August 1 2020 12:00:00"),
+          deliveredAt: new Date("August 4 2020 12:00:00"),
+        },
+        {
+          name: "Sam",
+          total: 200,
+          delivered: true,
+          items: [
+            { name: "JavaScript for Beginners", price: 50 },
+            { name: "JavaScript for Intermediate", price: 50 },
+            { name: "JavaScript for Experts", price: 100 },
+          ],
+          createdAt: new Date("August 1 2020 09:00:00"),
+          deliveredAt: new Date("August 4 2020 12:00:00"),
+        },
+        {
+          name: "Snickers",
+          total: 5,
+          delivered: true,
+          items: [{ name: "Snickers", price: 5 }],
+          createdAt: new Date("August 1 2020 15:00:00"),
+          deliveredAt: new Date("August 2 2020 12:00:00"),
+        },
+        {
+          name: "Polo",
+          total: 5,
+          delivered: true,
+          items: [{ name: "Snickers", price: 5 }],
+          createdAt: new Date("August 1 2020 15:00:00"),
+          deliveredAt: new Date("August 2 2020 12:00:00"),
+        },
+      ];
+
+      const timeSlots = [
+        { label: "9am - 12pm", start: 9, end: 12 },
+        { label: "12pm - 3pm", start: 12, end: 15 },
+        { label: "3pm - 6pm", start: 15, end: 18 },
+      ];
+
+      const grouped = orders.reduce((acc, order) => {
+        const hour = order.createdAt.getHours();
+
+        const slot = timeSlots.find((s) => hour >= s.start && hour < s.end);
+        if (slot) {
+          acc[slot.label] = (acc[slot.label] || 0) + 1;
+        }
+        return acc;
+      }, {});
+
+      console.log(grouped);
+    </script>
+  </body>
+</html>
