@@ -21,7 +21,6 @@ function handleSubmit(e) {
 }
 
 function displayItems() {
-  console.log(items);
   const html = items
     .map((item) => {
       return `<li class="shopping-item">
@@ -34,5 +33,19 @@ function displayItems() {
   list.innerHTML = html;
 }
 
+function mirrorToLocalStorage() {
+  localStorage.setItem("items", JSON.stringify(items));
+}
+
+function restoreFromLocalStorage() {
+  const lsItems = JSON.parse(localStorage.getItem("items"));
+  if (lsItems.length) {
+    items = lsItems;
+    list.dispatchEvent(new CustomEvent("itemsUpdated"));
+  }
+}
+
 shoppingForm.addEventListener("submit", handleSubmit);
 list.addEventListener("itemsUpdated", displayItems);
+list.addEventListener("itemsUpdated", mirrorToLocalStorage);
+restoreFromLocalStorage();
